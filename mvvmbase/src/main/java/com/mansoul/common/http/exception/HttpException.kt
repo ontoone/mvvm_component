@@ -8,7 +8,7 @@ import java.util.*
 /**
  * Http请求异常
  *
- * @author liyunlong
+ * @author Mansoul
  * @date 2017/2/4 11:31
  */
 class HttpException : Exception {

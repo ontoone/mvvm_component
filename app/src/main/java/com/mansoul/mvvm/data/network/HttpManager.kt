@@ -25,7 +25,7 @@ class HttpManager private constructor() {
         if (httpClient == null) {
             httpClient = buildHttpClient {
                 context = BaseApp.instance
-                baseUrl = "http://pv.sohu.com"
+                baseUrl = "http://gank.io/api/"
                 logEnabled = true
             }
             httpClient!!.init()

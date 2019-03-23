@@ -1,51 +1,59 @@
 package com.mansoul.common.base
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mansoul.common.utils.obtainViewModel
 
 /**
  * @author Mansoul
- * @create 2019/3/20 14:50
+ * @create 2019/3/21 15:45
  * @des
  */
-abstract class BaseActivity<VM : BaseVM> : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
-    var mViewMode: VM? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
-        createVM()
-        initView()
-        observer()
-    }
+    abstract fun initView(savedInstanceState: Bundle?)
 
     abstract fun getLayoutResId(): Int
 
-    private fun createVM() {
-        providerVMClass()?.let {
-            mViewMode = obtainViewModel(it)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        beforeSuper()
+        super.onCreate(savedInstanceState)
+
+        // 初始化
+        beforeSetContentView(savedInstanceState)
+
+        // 处理Intent(主要用来获取其中携带的参数)
+        if (intent != null) {
+            handleIntent(intent)
         }
+
+        setContentView(getLayoutResId())
+
+        initView(savedInstanceState)
+        loadData()
     }
 
-    abstract fun initView()
+    protected fun beforeSuper() {
 
-    /**
-     * [BaseVM]的实现类
-     */
-    open fun providerVMClass(): Class<VM>? = null
-
-    private fun observer() {
-        mViewMode?.apply {
-            observer(this)
-        }
     }
 
-    /**
-     * 观察[mViewMode]
-     */
-    open fun observer(vm: VM) {
+    protected fun beforeSetContentView(savedInstanceState: Bundle?) {
+
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        if (layoutResID == 0) {
+            throw NullPointerException("layoutResID can not be null!")
+        }
+        super.setContentView(layoutResID)
+
+    }
+
+    protected fun handleIntent(intent: Intent) {
+
+    }
+
+    protected fun loadData() {
 
     }
 }

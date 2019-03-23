@@ -26,7 +26,7 @@ abstract class BaseVM : ViewModel(), CoroutineScope {
 
     val mException = MutableLiveData<HttpException>()
 
-    protected fun vmLaunch(actionBlock: suspend CoroutineScope.() -> Unit) {
+    protected fun uiLaunch(actionBlock: suspend CoroutineScope.() -> Unit) {
         val job = launch {
             try {
                 onStart()
@@ -38,7 +38,25 @@ abstract class BaseVM : ViewModel(), CoroutineScope {
             }
         }
         mLaunchManager.add(job)
-        job.invokeOnCompletion { mLaunchManager.remove(job) }
+        job.invokeOnCompletion {
+            job.cancel()
+            mLaunchManager.remove(job)
+        }
+    }
+
+    protected fun ioLaunch(actionBlock: suspend CoroutineScope.() -> Unit) {
+        val job = launch(Dispatchers.IO) {
+            try {
+                actionBlock.invoke(this)
+            } catch (e: Exception) {
+                Logger.e(e.toString())
+            }
+        }
+        mLaunchManager.add(job)
+        job.invokeOnCompletion {
+            job.cancel()
+            mLaunchManager.remove(job)
+        }
     }
 
     private fun onStart() {
@@ -69,7 +87,7 @@ abstract class BaseVM : ViewModel(), CoroutineScope {
 
     override fun onCleared() {
         super.onCleared()
-        Logger.i("onCleared")
+        Logger.i("${this.javaClass.simpleName} onCleared")
         clearLaunchTask()
     }
 

@@ -1,7 +1,8 @@
 package com.mansoul.mvvm.data.network
 
+import com.mansoul.mvvm.data.entity.GankToday
+import com.mansoul.mvvm.data.entity.Image
 import kotlinx.coroutines.Deferred
-import okhttp3.ResponseBody
 import retrofit2.http.GET
 
 /**
@@ -11,11 +12,18 @@ import retrofit2.http.GET
  */
 interface Api {
 
-    /**
-     * TEST
-     * 获取城市信息
-     */
-    @GET("http://pv.sohu.com/cityjson?ie=utf-8&qq-pf-to=pcqq.c2c")
-    fun getCurrentWeather(): Deferred<ResponseBody>
+    //分类数据: http://gank.io/api/data/数据类型/请求个数/第几页
+    //http://gank.io/api/data/福利/10/1
 
+    /**
+     * 获取最新一天的干货
+     */
+    @GET("today")
+    fun gankToday(): Deferred<GankToday>
+
+    /**
+     * 获取最新一天的干货
+     */
+    @GET("data/福利/10/1")
+    fun getImages(): Deferred<Image>
 }
