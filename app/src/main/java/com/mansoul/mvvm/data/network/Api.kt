@@ -1,5 +1,6 @@
 package com.mansoul.mvvm.data.network
 
+import com.mansoul.common.http.HttpClient
 import com.mansoul.mvvm.data.entity.GankToday
 import com.mansoul.mvvm.data.entity.Image
 import kotlinx.coroutines.Deferred
@@ -26,4 +27,12 @@ interface Api {
      */
     @GET("data/福利/10/1")
     fun getImages(): Deferred<Image>
+
+    companion object {
+        operator fun invoke(
+            httpClient: HttpClient
+        ): Api {
+            return httpClient.create(Api::class.java)
+        }
+    }
 }

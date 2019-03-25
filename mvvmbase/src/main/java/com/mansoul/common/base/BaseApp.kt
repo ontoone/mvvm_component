@@ -12,7 +12,7 @@ import com.orhanobut.logger.Logger
  * @create 2019/3/20 11:02
  * @des
  */
-class BaseApp : Application() {
+open class BaseApp : Application() {
 
     /**
      * 是否处于前台

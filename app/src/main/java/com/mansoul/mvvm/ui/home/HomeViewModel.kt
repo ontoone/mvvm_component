@@ -10,29 +10,6 @@ import com.orhanobut.logger.Logger
 
 class HomeViewModel : BaseVM() {
 
-    val homeRepo: HomeRepo
-
-    val mImage: MutableLiveData<List<GankImage>> = MutableLiveData()
-
-
-    init {
-        val imageDao = MyDatabase.getDatabase(BaseApp.applicationContext()).imageDao()
-        homeRepo = HomeRepo(imageDao)
-    }
-
-    fun getImage() {
-        uiLaunch {
-            val images = homeRepo.getImages()
-            Logger.e(images.toString())
-            mImage.postValue(images)
-        }
-    }
-
-    fun delete() {
-        ioLaunch {
-            homeRepo.delete()
-        }
-    }
 
 
 }

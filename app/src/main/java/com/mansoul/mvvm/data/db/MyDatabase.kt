@@ -12,7 +12,7 @@ import com.mansoul.mvvm.data.entity.GankImage
  * @des
  */
 @Database(entities = arrayOf(GankImage::class), version = 1)
-public abstract class MyDatabase : RoomDatabase() {
+abstract class MyDatabase : RoomDatabase() {
     abstract fun imageDao(): ImageDao
 
     companion object {
