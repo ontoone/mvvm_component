@@ -18,7 +18,7 @@ abstract class BaseVMActivity<VM : BaseVM> : BaseActivity() {
     }
 
     private fun createVM() {
-        providerVMClass()?.let {
+        providerVMClass().let {
             mViewMode = obtainViewModel(it)
         }
     }

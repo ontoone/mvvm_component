@@ -27,7 +27,7 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope {
 
     private var subscribeTime: Long = 0
 
-    protected var mHolder: Gloading.Holder? = null
+    open var mGloadingHolder: Gloading.Holder? = null
 
     var mViewMode: VM? = null
 
@@ -36,8 +36,8 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(getLayoutResId(), container, false)
-        mHolder = Gloading.getDefault().wrap(view).withRetry { onLoadRetry() }
-        return mHolder?.wrapper
+        mGloadingHolder = Gloading.getDefault().wrap(view).withRetry { onLoadRetry() }
+        return mGloadingHolder?.wrapper
     }
 
     override fun onDestroy() {
@@ -158,19 +158,19 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope {
     open fun onLoadRetry() {
     }
 
-    fun showLoading() {
-        mHolder?.showLoading()
+    open fun showLoading() {
+        mGloadingHolder?.showLoading()
     }
 
-    fun showLoadSuccess() {
-        mHolder?.showLoadSuccess()
+    open fun showLoadSuccess() {
+        mGloadingHolder?.showLoadSuccess()
     }
 
-    fun showLoadFailed() {
-        mHolder?.showLoadFailed()
+    open fun showLoadFailed() {
+        mGloadingHolder?.showLoadFailed()
     }
 
-    fun showEmpty() {
-        mHolder?.showEmpty()
+    open fun showEmpty() {
+        mGloadingHolder?.showEmpty()
     }
 }

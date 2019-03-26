@@ -33,11 +33,15 @@ abstract class BaseActivity : AppCompatActivity() {
         loadData()
     }
 
-    protected fun beforeSuper() {
+    open fun beforeSuper() {
 
     }
 
-    protected fun beforeSetContentView(savedInstanceState: Bundle?) {
+    open fun beforeSetContentView(savedInstanceState: Bundle?) {
+
+    }
+
+    open fun handleIntent(intent: Intent) {
 
     }
 
@@ -49,11 +53,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     }
 
-    protected fun handleIntent(intent: Intent) {
-
-    }
-
-    protected fun loadData() {
+    open fun loadData() {
 
     }
 }
