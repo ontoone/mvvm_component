@@ -1,9 +1,9 @@
 package com.mansoul.mvvm.ui.home
 
-import com.mansoul.common.base.BaseFragment
+import com.mansoul.common.base.BaseVMFragment
 import com.mansoul.mvvm.R
 
-class HomeFragment : BaseFragment<HomeViewModel>() {
+class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
     override fun getLayoutResId(): Int = R.layout.home_fragment
     override fun providerVMClass(): Class<HomeViewModel> = HomeViewModel::class.java

@@ -85,4 +85,6 @@ dependencies {
 
     api 'com.orhanobut:logger:2.2.0'
 
+    api 'com.billy.android:gloading:1.0.0'
+
 }

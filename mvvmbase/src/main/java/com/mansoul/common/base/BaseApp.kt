@@ -2,6 +2,9 @@ package com.mansoul.common.base
 
 import android.app.Application
 import android.content.Context
+import com.billy.android.loading.Gloading
+import com.mansoul.common.BuildConfig
+import com.mansoul.common.adapter.DefaultGloadingAdapter
 import com.mansoul.common.callback.LifecycleCallbacks
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -31,6 +34,19 @@ open class BaseApp : Application() {
         instance = this
         Logger.addLogAdapter(AndroidLogAdapter())
         registerActivityLifecycleCallbacks(LifecycleCallbacks())
+        initStatusView()
+    }
+
+    private fun initStatusView() {
+        Gloading.debug(BuildConfig.DEBUG)
+        Gloading.initDefault(
+            if (providerGloadingAdapter() != null) providerGloadingAdapter()
+            else DefaultGloadingAdapter()
+        )
+    }
+
+    open fun providerGloadingAdapter(): Gloading.Adapter? {
+        return null
     }
 
     /**

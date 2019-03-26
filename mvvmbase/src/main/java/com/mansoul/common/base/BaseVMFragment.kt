@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.billy.android.loading.Gloading
 import com.mansoul.common.http.exception.ExceptionEngine
 import com.mansoul.common.http.exception.HttpException
 import com.mansoul.common.utils.obtainViewModel
@@ -18,7 +19,7 @@ import kotlin.coroutines.CoroutineContext
  * @create 2019/3/21 14:55
  * @des
  */
-abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
+abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope {
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
@@ -26,13 +27,17 @@ abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
 
     private var subscribeTime: Long = 0
 
+    protected var mHolder: Gloading.Holder? = null
+
     var mViewMode: VM? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(getLayoutResId(), container, false)
+        val view = inflater.inflate(getLayoutResId(), container, false)
+        mHolder = Gloading.getDefault().wrap(view).withRetry { onLoadRetry() }
+        return mHolder?.wrapper
     }
 
     override fun onDestroy() {
@@ -57,6 +62,7 @@ abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
             try {
                 onLaunchStart()
                 actionBlock.invoke(this)
+                onLaunchSuccess()
             } catch (e: Exception) {
                 onLaunchError(e)
             } finally {
@@ -73,27 +79,20 @@ abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
     open fun onLaunchStart() {
         Logger.e("onLaunchStart")
         subscribeTime = System.currentTimeMillis()
-
+        showLoading()
     }
 
-    open fun onLaunchStop() {
-        Logger.e("onLaunchStop")
-
+    open fun onLaunchSuccess() {
+        Logger.e("onLaunchSuccess")
+        showLoadSuccess()
     }
 
     open fun onLaunchFinally() {
-        onLaunchStop()
-        Logger.e("onLaunchFinally")
-
-    }
-
-    open fun onException(exception: HttpException) {
-
     }
 
     private fun onLaunchError(throwable: Throwable) {
-        onLaunchStop()
         Logger.e("onLaunchError")
+        showLoadFailed()
         val exception: HttpException = if (throwable is HttpException) {
             throwable
         } else {
@@ -101,8 +100,13 @@ abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
         }
         exception.responseTime = getResponseTime()
         Logger.e(exception.toString())
-        onException(exception)
+        handleException(exception)
     }
+
+    open fun handleException(exception: HttpException) {
+
+    }
+
 
     abstract fun initView()
 
@@ -148,5 +152,25 @@ abstract class BaseFragment<VM : BaseVM> : Fragment(), CoroutineScope {
             "${interval}ms"
         }
         return responTime
+    }
+
+
+    open fun onLoadRetry() {
+    }
+
+    fun showLoading() {
+        mHolder?.showLoading()
+    }
+
+    fun showLoadSuccess() {
+        mHolder?.showLoadSuccess()
+    }
+
+    fun showLoadFailed() {
+        mHolder?.showLoadFailed()
+    }
+
+    fun showEmpty() {
+        mHolder?.showEmpty()
     }
 }

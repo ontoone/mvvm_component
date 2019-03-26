@@ -2,14 +2,14 @@ package com.mansoul.mvvm.ui.image
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.mansoul.common.base.BaseFragment
+import com.mansoul.common.base.BaseVMFragment
 import com.mansoul.mvvm.R
 import kotlinx.android.synthetic.main.image_fragment.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class ImageFragment : BaseFragment<ImageViewModel>(), KodeinAware {
+class ImageFragment : BaseVMFragment<ImageViewModel>(), KodeinAware {
 
     override val kodein by closestKodein()
     private val imageVMFactory: ImageVMFactory by instance()
@@ -26,6 +26,10 @@ class ImageFragment : BaseFragment<ImageViewModel>(), KodeinAware {
 
     override fun getLayoutResId(): Int = R.layout.image_fragment
 
+    override fun onLoadRetry() {
+        super.onLoadRetry()
+        bindUi()
+    }
 
     override fun initView() {
         bindUi()
