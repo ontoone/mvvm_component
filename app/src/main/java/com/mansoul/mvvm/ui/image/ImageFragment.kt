@@ -3,6 +3,7 @@ package com.mansoul.mvvm.ui.image
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mansoul.common.base.BaseVMFragment
+import com.mansoul.common.imageloader.ImageLoaderHelper
 import com.mansoul.mvvm.R
 import kotlinx.android.synthetic.main.image_fragment.*
 import org.kodein.di.KodeinAware
@@ -41,7 +42,8 @@ class ImageFragment : BaseVMFragment<ImageViewModel>(), KodeinAware {
 
     override fun observer(vm: ImageViewModel) {
         vm.image.observe(this, Observer {
-            text.text = it.toString()
+            ImageLoaderHelper.with(this)
+                .loadFromUrl(image_view, it?.get(0)!!.url)
         })
     }
 

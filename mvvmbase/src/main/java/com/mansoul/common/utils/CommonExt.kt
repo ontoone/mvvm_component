@@ -1,5 +1,6 @@
 package com.mansoul.common.utils
 
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -20,3 +21,5 @@ fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
 
 fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>, factory: ViewModelProvider.NewInstanceFactory) =
     ViewModelProviders.of(this, factory).get(viewModelClass)
+
+fun isOnMainThread() = Looper.myLooper() == Looper.getMainLooper()

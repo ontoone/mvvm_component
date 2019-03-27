@@ -5,10 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.image.ImageFragment">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="" />
-
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>
