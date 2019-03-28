@@ -6,15 +6,8 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/click"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="home" />
-
+        android:layout_height="match_parent" />
 </LinearLayout>

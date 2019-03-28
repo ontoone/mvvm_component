@@ -6,13 +6,10 @@ import com.mansoul.common.base.BaseVMFragment
 import com.mansoul.common.imageloader.ImageLoaderHelper
 import com.mansoul.mvvm.R
 import kotlinx.android.synthetic.main.image_fragment.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-class ImageFragment : BaseVMFragment<ImageViewModel>(), KodeinAware {
+class ImageFragment : BaseVMFragment<ImageViewModel>() {
 
-    override val kodein by closestKodein()
     private val imageVMFactory: ImageVMFactory by instance()
 
     override fun providerVMClass(): Class<ImageViewModel> = ImageViewModel::class.java

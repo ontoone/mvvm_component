@@ -12,6 +12,8 @@ import com.mansoul.common.http.exception.HttpException
 import com.mansoul.common.utils.obtainViewModel
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -19,7 +21,9 @@ import kotlin.coroutines.CoroutineContext
  * @create 2019/3/21 14:55
  * @des
  */
-abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope {
+abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinAware {
+
+    override val kodein by closestKodein()
 
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
