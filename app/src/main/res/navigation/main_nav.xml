@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mansoul.mvvm.ui.home.HomeFragment"
+        android:name="com.mansoul.sample.ui.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
     <fragment
         android:id="@+id/imageFragment"
-        android:name="com.mansoul.mvvm.ui.image.ImageFragment"
+        android:name="com.mansoul.sample.ui.image.ImageFragment"
         android:label="image_fragment"
         tools:layout="@layout/image_fragment" />
 </navigation>

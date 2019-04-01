@@ -89,3 +89,21 @@ dependencies {
     api 'com.billy.android:gloading:1.0.0'
 
 }
+
+//以下开始是将Android Library上传到jcenter的相关配置
+//apply plugin: 'com.novoda.bintray-release'//添加
+//def siteUrl = 'https://github.com/GeekxFreak'  //github主页
+//publish {
+//    userOrg = 'mansoul'//bintray.com的用户名
+//    groupId = 'com.mansoul.mvvm'//一个唯一值，默认包名,生成的gradle依赖前缀
+//    artifactId = 'aacmvvm'//远程仓库包名称
+//    publishVersion = '0.0.1'//版本号
+//    desc = 'Android mvvm Architecture'//描述，不重要
+//    website = siteUrl//引用github主页
+//}
+//
+//tasks.withType(Javadoc) {//防止编码问题
+//    options.addStringOption('Xdoclint:none', '-quiet')
+//    options.addStringOption('encoding', 'UTF-8')
+//    options.addStringOption('charSet', 'UTF-8')
+//}
