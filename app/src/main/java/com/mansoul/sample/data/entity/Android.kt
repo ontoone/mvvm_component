@@ -12,7 +12,7 @@ data class Android(
     val _id: String,
     val createdAt: String,
     val desc: String,
-    var images: List<String> = listOf(),
+    var images: List<String> = emptyList(),
     val publishedAt: String,
     val source: String,
     val type: String,

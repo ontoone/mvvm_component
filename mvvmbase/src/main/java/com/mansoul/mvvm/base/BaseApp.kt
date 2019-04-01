@@ -17,9 +17,6 @@ import com.orhanobut.logger.Logger
  */
 open class BaseApp : Application() {
 
-    /**
-     * 是否处于前台
-     */
     private var isForeground: Boolean = false
 
     companion object {
@@ -49,16 +46,10 @@ open class BaseApp : Application() {
         return null
     }
 
-    /**
-     * 判断APP是否在前台
-     */
     fun isForeground(): Boolean {
         return isForeground
     }
 
-    /**
-     * 设置APP是否在前台
-     */
     fun setForeground(foreground: Boolean) {
         isForeground = foreground
     }

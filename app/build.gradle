@@ -21,6 +21,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+        }
     }
 }
 
@@ -28,6 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':mvvmbase')
+//    implementation 'com.mansoul.mvvm:aacmvvm:0.0.2'
 
     kapt "androidx.room:room-compiler:$room_version"
 

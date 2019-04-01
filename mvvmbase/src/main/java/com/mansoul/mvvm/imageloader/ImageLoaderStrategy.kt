@@ -61,7 +61,12 @@ interface ImageLoaderStrategy {
      * @param options      图片加载配置选项
      * @param loadOnlyWifi 是否仅在WIFI情况下加载
      */
-    fun loadFromUrl(imageView: ImageView, url: String, options: ImageLoaderOptions = ImageLoaderOptions(), loadOnlyWifi: Boolean)
+    fun loadFromUrl(
+        imageView: ImageView,
+        url: String,
+        options: ImageLoaderOptions = ImageLoaderOptions(),
+        loadOnlyWifi: Boolean
+    )
 
     /**
      * 下载图片
@@ -78,7 +83,11 @@ interface ImageLoaderStrategy {
      * @param options          图片加载配置选项
      * @param downloadOnlyWifi 是否仅在Wifi情况下下载
      */
-    fun downloadImage(url: String, options: ImageLoaderOptions = ImageLoaderOptions(), downloadOnlyWifi: Boolean): Bitmap?
+    fun downloadImage(
+        url: String,
+        options: ImageLoaderOptions = ImageLoaderOptions(),
+        downloadOnlyWifi: Boolean
+    ): Bitmap?
 
     /**
      * 恢复请求

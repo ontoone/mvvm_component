@@ -3,9 +3,7 @@ package com.mansoul.sample.ui.image
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mansoul.mvvm.base.BaseVMFragment
-import com.mansoul.mvvm.imageloader.ImageLoaderHelper
 import com.mansoul.sample.R
-import kotlinx.android.synthetic.main.image_fragment.*
 import org.kodein.di.generic.instance
 
 class ImageFragment : BaseVMFragment<ImageViewModel>() {
@@ -39,8 +37,8 @@ class ImageFragment : BaseVMFragment<ImageViewModel>() {
 
     override fun observer(vm: ImageViewModel) {
         vm.image.observe(this, Observer {
-            ImageLoaderHelper.with(this)
-                .loadFromUrl(image_view, it?.get(0)!!.url)
+//            ImageLoaderHelper.with(this)
+//                .loadFromUrl(image_view, it?.get(0)!!.url)
         })
     }
 

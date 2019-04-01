@@ -17,13 +17,13 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     }
 
-    /** 回到后台的时间戳  */
+    /** Back to the background timestamp  */
     private var backgroundStamp: Long = 0
-    /** 正在运行的[Activity]的数量  */
+    /** The number of [Activity] that is running  */
     private var activityCount = 0
-    /** 标记是否首次从后台回到前台  */
+    /** Whether the mark is returned to the foreground from the background for the first time  */
     private var isFirstFromBackground = true
-    /** 已经启动的[Activity]的名称集合  */
+    /** The collection of names of [Activity] that have been started  */
     private val treeSet = TreeSet<String>()
 
     override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
@@ -32,11 +32,11 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityStarted(activity: Activity?) {
         if (activityCount == 0) {
-            Logger.i("App切到前台...")
+            Logger.i("App cuts to the front desk...")
             executeTaskFromBackground()
             if (backgroundStamp > 0) {
                 val timeInterval = System.currentTimeMillis() - backgroundStamp
-                Logger.i("App在后台停留时间为：$timeInterval ms")
+                Logger.i("App stays in the background for：$timeInterval ms")
             }
         }
         activityCount++
@@ -53,7 +53,7 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
         activityCount--
         Logger.i(activity?.javaClass!!.name + " Stopped!")
         if (activityCount == 0) {
-            Logger.i("App切到后台...")
+            Logger.i("App cut to the background...")
             BaseApp.instance?.setForeground(false)
             backgroundStamp = System.currentTimeMillis()
         }
@@ -67,21 +67,21 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 获取正在运行的[Activity]的数量
+     * Get the number of [Activity] that is running
      */
     fun getActivityCount(): Int {
         return activityCount
     }
 
     /**
-     * 判断指定名称的[Activity]是否启动
+     * Determine if the [Activity] of the specified name is activated
      */
     fun checkActivityExists(className: String): Boolean {
         return treeSet.contains(className)
     }
 
     /**
-     * 执行从后台切到前台的任务
+     * Perform tasks from the background to the foreground
      */
     private fun executeTaskFromBackground() {
         if (isFirstFromBackground) {

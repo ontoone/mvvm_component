@@ -19,10 +19,8 @@ abstract class BaseActivity : AppCompatActivity() {
         beforeSuper()
         super.onCreate(savedInstanceState)
 
-        // 初始化
         beforeSetContentView(savedInstanceState)
 
-        // 处理Intent(主要用来获取其中携带的参数)
         if (intent != null) {
             handleIntent(intent)
         }

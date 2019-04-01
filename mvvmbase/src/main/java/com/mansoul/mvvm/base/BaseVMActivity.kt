@@ -24,15 +24,12 @@ abstract class BaseVMActivity<VM : BaseVM> : BaseActivity() {
     }
 
     /**
-     * 观察[mViewMode]
+     * observer data[mViewMode]
      */
     open fun observer(vm: VM) {
 
     }
 
-    /**
-     * [BaseVM]的实现类
-     */
     abstract fun providerVMClass(): Class<VM>
 
     private fun observer() {

@@ -129,9 +129,6 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
         return null
     }
 
-    /**
-     * [BaseVM]的实现类
-     */
     abstract fun providerVMClass(): Class<VM>
 
     private fun observer() {
@@ -141,7 +138,7 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
     }
 
     /**
-     * 观察[mViewMode]
+     * observer [mViewMode]
      */
     open fun observer(vm: VM) {
 
@@ -150,7 +147,7 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
     private fun getResponseTime(): String {
         val interval = System.currentTimeMillis() - subscribeTime
         val responTime: String
-        responTime = if (interval > 1000) {// 如果大于1000ms，则换用s来显示
+        responTime = if (interval > 1000) {
             "${interval / 1000}s"
         } else {
             "${interval}ms"

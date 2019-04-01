@@ -13,9 +13,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.FutureTarget
 import com.bumptech.glide.request.target.Target
-import com.mansoul.mvvm.imageloader.GlideApp
-import com.mansoul.mvvm.imageloader.GlideRequest
-import com.mansoul.mvvm.imageloader.GlideRequests
 import com.mansoul.mvvm.utils.isOnMainThread
 import java.io.File
 
