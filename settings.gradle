@@ -1,1 +1,1 @@
-include ':app', ':mvvmbase'
+include ':app', ':mvvmbase', ':wanandroid'
