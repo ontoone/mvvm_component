@@ -3,7 +3,7 @@ package com.mansoul.mvvm.base
 import android.app.Application
 import android.content.Context
 import com.billy.android.loading.Gloading
-import com.mansoul.common.BuildConfig
+import com.mansoul.mvvm.BuildConfig
 import com.mansoul.mvvm.adapter.DefaultGloadingAdapter
 import com.mansoul.mvvm.callback.LifecycleCallbacks
 import com.orhanobut.logger.AndroidLogAdapter

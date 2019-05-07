@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="glide_tag_id" type="id" />
-
+    <item name="root_content" type="id" />
+    <item name="toolbar" type="id" />
+    <item name="title" type="id" />
+    <item name="subtitle" type="id" />
+    <item name="refresh_layout" type="id" />
 </resources>

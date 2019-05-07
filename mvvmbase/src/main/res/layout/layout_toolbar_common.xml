@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="1dp"
+        android:theme="@style/ToolbarTheme"
+        toolbar:contentInsetLeft="0dp"
+        toolbar:contentInsetStart="0dp"
+        toolbar:contentInsetStartWithNavigation="0dp"
+        toolbar:subtitleTextAppearance="@style/ToolbarSubtitleStyle"
+        toolbar:titleTextAppearance="@style/ToolbarTitleStyle"
+        tools:targetApi="lollipop" />
+</LinearLayout>

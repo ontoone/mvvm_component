@@ -54,4 +54,27 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun loadData() {
 
     }
+
+    /**
+     * 跳转页面
+     *
+     * @param clz 所跳转的目的Activity类
+     */
+    fun startActivity(clz: Class<*>) {
+        startActivity(Intent(this, clz))
+    }
+
+    /**
+     * 跳转页面
+     *
+     * @param clz    所跳转的目的Activity类
+     * @param bundle 跳转所携带的信息
+     */
+    fun startActivity(clz: Class<*>, bundle: Bundle?) {
+        val intent = Intent(this, clz)
+        if (bundle != null) {
+            intent.putExtras(bundle)
+        }
+        startActivity(intent)
+    }
 }

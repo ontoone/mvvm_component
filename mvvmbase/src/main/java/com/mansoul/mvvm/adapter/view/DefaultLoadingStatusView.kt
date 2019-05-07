@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import com.billy.android.loading.Gloading.*
-import com.mansoul.common.R
+import com.mansoul.mvvm.R
 import kotlinx.android.synthetic.main.view_default_loading_status.view.*
 
 /**
