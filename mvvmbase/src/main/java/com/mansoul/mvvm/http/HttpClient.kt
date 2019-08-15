@@ -39,7 +39,7 @@ data class HttpClient constructor(
     var validateEagerly: Boolean = true,
 
     var loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor(),
-    var headersInterceptor: HeadersInterceptor? = null,
+    var headersInterceptor: Interceptor? = null,
     var interceptors: ArrayList<Interceptor>? = null,
     var networkInterceptors: ArrayList<Interceptor>? = null,
 

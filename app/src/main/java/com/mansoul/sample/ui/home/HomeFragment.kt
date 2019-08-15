@@ -7,6 +7,7 @@ import com.mansoul.mvvm.base.BaseVMFragment
 import com.mansoul.sample.R
 import kotlinx.android.synthetic.main.home_fragment.*
 import me.drakeet.multitype.MultiTypeAdapter
+import okhttp3.internal.Internal.instance
 import org.kodein.di.generic.instance
 
 class HomeFragment : BaseVMFragment<HomeViewModel>() {

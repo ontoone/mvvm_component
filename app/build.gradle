@@ -30,7 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':mvvmbase')
-//    implementation 'com.mansoul.mvvm:aacmvvm:0.0.2'
+//    implementation 'com.mansoul.mvvm:aacmvvm:0.0.6'
 
     kapt "androidx.room:room-compiler:$room_version"
 

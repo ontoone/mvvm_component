@@ -1,61 +1,35 @@
 package com.mansoul.mvvm.base
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.billy.android.loading.Gloading
 import com.mansoul.mvvm.http.exception.ExceptionEngine
 import com.mansoul.mvvm.http.exception.HttpException
 import com.mansoul.mvvm.utils.obtainViewModel
 import com.orhanobut.logger.Logger
 import kotlinx.coroutines.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.closestKodein
-import kotlin.coroutines.CoroutineContext
 
 /**
  * @author Mansoul
  * @create 2019/3/21 14:55
  * @des
  */
-abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinAware {
+abstract class BaseVMFragment<VM : BaseVM> : BaseFragment() {
 
-    override val kodein by closestKodein()
-
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main
     private val mLaunchManager: MutableList<Job> = mutableListOf()
 
     private var subscribeTime: Long = 0
 
-    open var mGloadingHolder: Gloading.Holder? = null
-
     var mViewMode: VM? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(getLayoutResId(), container, false)
-        mGloadingHolder = Gloading.getDefault().wrap(view).withRetry { onLoadRetry() }
-        return mGloadingHolder?.wrapper
-    }
 
     override fun onDestroy() {
         super.onDestroy()
         mLaunchManager.clear()
     }
 
-    abstract fun getLayoutResId(): Int
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         createVM()
         observer()
-        initView()
+        super.onActivityCreated(savedInstanceState)
     }
 
     open fun netLaunch(
@@ -83,12 +57,12 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
     open fun onLaunchStart() {
         Logger.e("onLaunchStart")
         subscribeTime = System.currentTimeMillis()
-        showLoading()
+        netLoading()
     }
 
     open fun onLaunchSuccess() {
         Logger.e("onLaunchSuccess")
-        showLoadSuccess()
+        netLoadSuccess()
     }
 
     open fun onLaunchFinally() {
@@ -96,7 +70,7 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
 
     private fun onLaunchError(throwable: Throwable) {
         Logger.e("onLaunchError")
-        showLoadFailed()
+        netLoadFailed()
         val exception: HttpException = if (throwable is HttpException) {
             throwable
         } else {
@@ -110,9 +84,6 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
     open fun handleException(exception: HttpException) {
 
     }
-
-
-    abstract fun initView()
 
     private fun createVM() {
         val vmFactory = providerVMFactory()
@@ -153,25 +124,5 @@ abstract class BaseVMFragment<VM : BaseVM> : Fragment(), CoroutineScope, KodeinA
             "${interval}ms"
         }
         return responTime
-    }
-
-
-    open fun onLoadRetry() {
-    }
-
-    open fun showLoading() {
-        mGloadingHolder?.showLoading()
-    }
-
-    open fun showLoadSuccess() {
-        mGloadingHolder?.showLoadSuccess()
-    }
-
-    open fun showLoadFailed() {
-        mGloadingHolder?.showLoadFailed()
-    }
-
-    open fun showEmpty() {
-        mGloadingHolder?.showEmpty()
     }
 }

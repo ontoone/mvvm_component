@@ -16,6 +16,12 @@ import androidx.lifecycle.ViewModelProviders
 fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this).get(viewModelClass)
 
+fun <T : ViewModel> AppCompatActivity.obtainViewModel(
+    viewModelClass: Class<T>,
+    factory: ViewModelProvider.NewInstanceFactory
+) =
+    ViewModelProviders.of(this, factory).get(viewModelClass)
+
 fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this).get(viewModelClass)
 

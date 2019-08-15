@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -18,7 +18,5 @@
         toolbar:contentInsetLeft="0dp"
         toolbar:contentInsetStart="0dp"
         toolbar:contentInsetStartWithNavigation="0dp"
-        toolbar:subtitleTextAppearance="@style/ToolbarSubtitleStyle"
-        toolbar:titleTextAppearance="@style/ToolbarTitleStyle"
         tools:targetApi="lollipop" />
 </LinearLayout>

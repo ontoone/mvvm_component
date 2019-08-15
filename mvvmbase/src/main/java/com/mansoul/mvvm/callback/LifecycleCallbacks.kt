@@ -12,7 +12,7 @@ import java.util.*
  * @create 2019/3/21 17:47
  * @des
  */
-class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+open class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
 
     }
@@ -33,6 +33,7 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityStarted(activity: Activity?) {
         if (activityCount == 0) {
             Logger.i("App cuts to the front desk...")
+            onComeBack()
             executeTaskFromBackground()
             if (backgroundStamp > 0) {
                 val timeInterval = System.currentTimeMillis() - backgroundStamp
@@ -55,8 +56,17 @@ class LifecycleCallbacks : Application.ActivityLifecycleCallbacks {
         if (activityCount == 0) {
             Logger.i("App cut to the background...")
             BaseApp.instance?.setForeground(false)
+            onBackground()
             backgroundStamp = System.currentTimeMillis()
         }
+    }
+
+    open fun onComeBack() {
+
+    }
+
+    open fun onBackground() {
+
     }
 
     override fun onActivityDestroyed(activity: Activity?) {

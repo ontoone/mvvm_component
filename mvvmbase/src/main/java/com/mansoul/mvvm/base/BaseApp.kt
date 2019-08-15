@@ -30,20 +30,21 @@ open class BaseApp : Application() {
         super.onCreate()
         instance = this
         Logger.addLogAdapter(AndroidLogAdapter())
-        registerActivityLifecycleCallbacks(LifecycleCallbacks())
+        registerActivityLifecycleCallbacks(providerLifecycleCallbacks())
         initStatusView()
+    }
+
+    open fun providerLifecycleCallbacks(): ActivityLifecycleCallbacks {
+        return LifecycleCallbacks()
     }
 
     private fun initStatusView() {
         Gloading.debug(BuildConfig.DEBUG)
-        Gloading.initDefault(
-            if (providerGloadingAdapter() != null) providerGloadingAdapter()
-            else DefaultGloadingAdapter()
-        )
+        Gloading.initDefault(DefaultGloadingAdapter())
     }
 
-    open fun providerGloadingAdapter(): Gloading.Adapter? {
-        return null
+    open fun providerGloadingAdapter(): Gloading.Adapter {
+        return DefaultGloadingAdapter()
     }
 
     fun isForeground(): Boolean {

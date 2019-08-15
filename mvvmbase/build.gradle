@@ -29,7 +29,7 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'androidx.appcompat:appcompat:1.1.0-alpha03'
+    api 'androidx.appcompat:appcompat:1.1.0-alpha05'
 
     // Navigation
 //    api "android.arch.navigation:navigation-fragment:$navigation_version"
@@ -84,7 +84,7 @@ dependencies {
     api 'com.xwray:groupie-kotlin-android-extensions:2.1.0'
 
     // New Material Design
-    api "com.google.android.material:material:1.0.0"
+    api 'com.google.android.material:material:1.1.0-alpha06'
 
     api 'com.orhanobut:logger:2.2.0'
 
@@ -99,7 +99,7 @@ publish {
     userOrg = 'hughlee'//bintray.com的用户名
     groupId = 'com.mansoul.mvvm'//一个唯一值，默认包名,生成的gradle依赖前缀
     artifactId = 'aacmvvm'//远程仓库包名称
-    publishVersion = '0.0.2'//版本号
+    publishVersion = '0.0.6-beta1'//版本号
     desc = 'Android mvvm Architecture'//描述，不重要
     website = siteUrl//引用github主页
 }
